@@ -1,10 +1,11 @@
 import { NavLink } from 'react-router-dom'
-import { CalendarCheck, ListChecks, BarChart3, Flame } from 'lucide-react'
+import { CalendarCheck, ListChecks, BarChart3, Settings, Flame } from 'lucide-react'
 
 const links = [
   { to: '/', label: 'Bugün', icon: CalendarCheck, end: true },
   { to: '/aliskanliklar', label: 'Alışkanlıklar', icon: ListChecks },
   { to: '/istatistikler', label: 'İstatistikler', icon: BarChart3 },
+  { to: '/ayarlar', label: 'Ayarlar', icon: Settings },
 ]
 
 const desktopLink = ({ isActive }) =>

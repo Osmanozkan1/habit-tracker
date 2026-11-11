@@ -2,6 +2,7 @@ import { Flame } from 'lucide-react'
 import { useHabits } from '../context/HabitsContext'
 import WeeklyChart from '../components/WeeklyChart'
 import Heatmap from '../components/Heatmap'
+import Achievements from '../components/Achievements'
 import { currentStreak, longestStreak } from '../utils/streaks'
 import { dayStats, lastDays } from '../utils/stats'
 
@@ -76,6 +77,13 @@ export default function StatsPage() {
             </li>
           ))}
         </ul>
+      </div>
+
+      <div className="mt-6 rounded-xl border border-line bg-panel p-5">
+        <h3 className="font-display text-lg font-semibold">Rozetler</h3>
+        <div className="mt-2">
+          <Achievements habits={habits} />
+        </div>
       </div>
     </section>
   )

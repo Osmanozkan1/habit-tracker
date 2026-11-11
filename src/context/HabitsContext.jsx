@@ -14,6 +14,7 @@ const DEMO = [
 export function HabitsProvider({ children }) {
   const [habits, setHabits] = useLocalStorage('habits', [])
   const [formOpen, setFormOpen] = useState(false)
+  const [editing, setEditing] = useState(null)
 
   const addHabit = (data) =>
     setHabits((prev) => [
@@ -21,24 +22,26 @@ export function HabitsProvider({ children }) {
       { id: crypto.randomUUID(), ...data, createdAt: toKey(), completions: [] },
     ])
 
+  const updateHabit = (id, data) =>
+    setHabits((prev) => prev.map((h) => (h.id === id ? { ...h, ...data } : h)))
+
   const deleteHabit = (id) =>
     setHabits((prev) => prev.filter((h) => h.id !== id))
 
-  const toggleToday = (id) => {
-    const today = toKey()
+  // Herhangi bir günü işaretle/işareti kaldır (varsayılan: bugün)
+  const toggleDay = (id, day = toKey()) =>
     setHabits((prev) =>
       prev.map((h) => {
         if (h.id !== id) return h
-        const done = h.completions.includes(today)
+        const done = h.completions.includes(day)
         return {
           ...h,
           completions: done
-            ? h.completions.filter((d) => d !== today)
-            : [...h.completions, today],
+            ? h.completions.filter((d) => d !== day)
+            : [...h.completions, day],
         }
       }),
     )
-  }
 
   // Test ve ekran görüntüsü için: son 70 güne rastgele geçmiş ekler
   const loadDemo = () => {
@@ -62,11 +65,24 @@ export function HabitsProvider({ children }) {
     habits,
     addHabit,
     deleteHabit,
-    toggleToday,
+    toggleDay,
+    replaceHabits: setHabits,
     loadDemo,
     formOpen,
-    openForm: () => setFormOpen(true),
-    closeForm: () => setFormOpen(false),
+    updateHabit,
+    editing,
+    openForm: () => {
+      setEditing(null)
+      setFormOpen(true)
+    },
+    openEdit: (habit) => {
+      setEditing(habit)
+      setFormOpen(true)
+    },
+    closeForm: () => {
+      setFormOpen(false)
+      setEditing(null)
+    },
   }
 
   return <HabitsContext.Provider value={value}>{children}</HabitsContext.Provider>

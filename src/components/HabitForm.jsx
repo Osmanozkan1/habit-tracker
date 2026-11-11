@@ -7,11 +7,11 @@ const COLORS = ['#f2b441', '#5eb8ff', '#7be0a8', '#ff7a8a', '#b69cff']
 const CATEGORIES = ['Sağlık', 'Öğrenme', 'Spor', 'Kişisel']
 
 function FormBody() {
-  const { addHabit, closeForm } = useHabits()
-  const [name, setName] = useState('')
-  const [icon, setIcon] = useState(ICONS[0])
-  const [color, setColor] = useState(COLORS[0])
-  const [category, setCategory] = useState(CATEGORIES[0])
+  const { addHabit, updateHabit, editing, closeForm } = useHabits()
+  const [name, setName] = useState(editing?.name ?? '')
+  const [icon, setIcon] = useState(editing?.icon ?? ICONS[0])
+  const [color, setColor] = useState(editing?.color ?? COLORS[0])
+  const [category, setCategory] = useState(editing?.category ?? CATEGORIES[0])
   const [error, setError] = useState('')
 
   useEffect(() => {
@@ -27,7 +27,9 @@ function FormBody() {
       setError('Alışkanlığa bir ad ver.')
       return
     }
-    addHabit({ name: trimmed, icon, color, category })
+    const data = { name: trimmed, icon, color, category }
+    if (editing) updateHabit(editing.id, data)
+    else addHabit(data)
     closeForm()
   }
 
@@ -44,7 +46,7 @@ function FormBody() {
       >
         <div className="flex items-center justify-between">
           <h2 id="habit-form-title" className="font-display text-xl font-semibold">
-            Yeni alışkanlık
+            {editing ? 'Alışkanlığı düzenle' : 'Yeni alışkanlık'}
           </h2>
           <button
             type="button"
@@ -143,7 +145,7 @@ function FormBody() {
               type="submit"
               className="rounded-lg bg-flame px-4 py-2 text-sm font-semibold text-ink hover:opacity-90"
             >
-              Alışkanlığı ekle
+              {editing ? 'Kaydet' : 'Alışkanlığı ekle'}
             </button>
           </div>
         </form>

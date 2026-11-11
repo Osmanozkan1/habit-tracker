@@ -24,3 +24,13 @@ button:focus-visible {
   outline: 2px solid var(--color-flame);
   outline-offset: 2px;
 }
+
+:root[data-theme="light"] {
+  --color-ink: #f3f5fa;
+  --color-panel: #ffffff;
+  --color-line: #dbe1ee;
+  --color-fg: #141a2a;
+  --color-muted: #5b6784;
+  --color-flame: #a35f00;
+  color-scheme: light;
+}
