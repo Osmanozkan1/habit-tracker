@@ -1,16 +1,45 @@
-# React + Vite
+# Habit Tracker (Alışkanlık Takipçisi)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Günlük alışkanlıkları takip etmeni, ilerlemeni görmeni ve rozet kazanmanı sağlayan web uygulaması.
 
-Currently, two official plugins are available:
+![Bugün sayfası](screenshots/bugun.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Özellikler
+- Günlük alışkanlık ekleme ve işaretleme
+- Bugün sayfasında ilerleme halkası
+- Önceki günlere geçip işaretleme
+- İstatistikler sayfası ve başarı rozetleri
+- Açık/koyu tema
+- Ayarlar sayfasında isim kaydı ("Merhaba, isim")
+- Örnek veri ekleme
+- Veriler tarayıcıda LocalStorage'da saklanır
 
-## React Compiler
+## Sayfalar
+- **Bugün:** günlük ilerleme ve işaretleme
+- **Alışkanlıklar:** ekleme, düzenleme, örnek veri
+- **İstatistikler:** ilerleme özeti ve rozetler
+- **Ayarlar:** isim ve tercihler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Kullanılan Teknolojiler
+- React 19 (Vite ile)
+- React Router
+- Tailwind CSS 4
+- Lucide React (simgeler)
+- LocalStorage
 
-## Expanding the ESLint configuration
+## Kurulum
+```
+git clone https://github.com/Osmanozkan1/habit-tracker.git
+cd habit-tracker
+npm install
+npm run dev
+```
+Tarayıcıda http://localhost:5173 adresini aç.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Yapay Zekanın Kullanımı
+Bu projede yapay zeka asistanı olarak Claude kullanıldı:
+- **Planlama:** Uygulama fikri, sayfalar ve veri modeli birlikte planlandı.
+- **Geliştirme:** Bileşenler (ilerleme halkası, rozetler, ayarlar, tema değiştirme) birlikte yazıldı.
+- **Hata ayıklama:** Hata mesajları ve beklenmedik davranışlar birlikte çözüldü.
+- **Sürüm kontrolü:** Git ve GitHub'a yükleme adımlarında yardım alındı.
+- **Doğrulama:** Üretilen kod tarayıcıda elle test edildi.
